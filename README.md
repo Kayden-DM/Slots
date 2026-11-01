@@ -1,23 +1,48 @@
-Slot Machine
-A command-line Python slots game where the player starts with $100 and bets on three random numbers matching.
+## Slots
+A command-line slot machine written in Python. It uses the random module to spin three reels between 0 and 10, and lets the player bet money from a starting balance of 100.
 
-Concepts Used
-Random Module — three random.randint(0, 10) calls simulate the slot reels.
+## Features
+Three Reels — Spins three random numbers from 0 to 10 on each round.
 
-Global Variables — money is updated inside play() using global.
+Jackpot — Pays 5x the bet when all three numbers match.
 
-Functions with Recursion — play() and playagain() call each other to keep the game going.
+Two of a Kind — Pays 2x the bet when any two numbers match.
 
-Features
-Betting System — the player chooses a bet, deducted before the spin.
+Loss Handling — Loses the bet when no numbers match.
 
-Three Payout Tiers — 5x for a jackpot (three of a kind), 2x for any two matching, nothing otherwise.
+Balance Tracking — Deducts the bet before the spin and adds winnings back to the player's money.
 
-Balance Tracking — money carries across rounds and the game ends at zero.
+Bet Validation — Rejects non-numeric, non-positive, and oversized bets.
 
-Improvements
-Validate Bet Input Correctly — a float bet combined with integer payouts causes float drift; also ValueError only catches non-numbers, not negative re-entry loops.
+Out of Money — Ends the game when the balance reaches zero.
 
-Replace Recursion with a Loop — play() → playagain() → play() stacks calls indefinitely and can crash on long sessions.
+Play Again — Continues the game or exits based on the user's answer.
 
-Quit Bug — playagain() prints "Thanks for playing" on y but doesn't actually exit; it falls through and restarts.
+## Technologies Used
+text
+| Technology | Purpose |
+|---|---|
+| Python | Application logic |
+| `random` | Spins the three reels |
+| `random.randint()` | Generates numbers between 0 and 10 |
+| `global` | Updates the `money` variable between games |
+| `input()` / `print()` | Console interaction |
+| `float()` | Parses bet amounts |
+| `try / except` | Handles invalid bet input |
+| Recursion | Restarts the game via `play()` and `playagain()` |
+<!-- -->
+## How to Use It
+Install Python 3.6 or newer from python.org and make sure it's added to your PATH.
+
+Save the code as slots.py.
+
+Open a terminal in the folder containing the file.
+
+Run python slots.py.
+
+Enter a bet amount, watch the reels spin, and answer y or n when asked if you want to quit.
+
+## Improvements
+Use a loop instead of recursion — play() and playagain() call each other every round, which stacks frames and will eventually hit Python's recursion limit; a while True loop is safer.
+
+Stop the game cleanly on exit — answering y to quit prints "Thanks for playing." but doesn't call exit(), so the player is asked to bet again; call exit() (or sys.exit()) after the message.
