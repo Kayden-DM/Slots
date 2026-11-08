@@ -19,7 +19,6 @@ Out of Money — Ends the game when the balance reaches zero.
 Play Again — Continues the game or exits based on the user's answer.
 
 ## Technologies Used
-text
 | Technology | Purpose |
 |---|---|
 | Python | Application logic |
